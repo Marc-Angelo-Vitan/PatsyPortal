@@ -1,0 +1,9 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="20" height="20" rx="2" stroke="currentColor" stroke-width="4" />
+  <rect x="15" y="15" width="10" height="10" rx="1" fill="currentColor" />
+  <rect x="70" y="10" width="20" height="20" rx="2" stroke="currentColor" stroke-width="4" />
+  <rect x="75" y="15" width="10" height="10" rx="1" fill="currentColor" />
+  <rect x="10" y="70" width="20" height="20" rx="2" stroke="currentColor" stroke-width="4" />
+  <rect x="15" y="75" width="10" height="10" rx="1" fill="currentColor" />
+  <path d="M40 10h10v5H40zm15 0h5v10h-5zm10 5h5v5h-5zm0 15h5v15h-5zM10 40h15v5H10zm35 0h10v10H45zm15 10h15v5H60zm0 15h5v20h-5zm15 5h10v10H75zm-35 5h15v5H40zM25 50h5v10h-5zm10 10h5v5h-5zm15-20h5v5h-5zm10 0h5v10h-5zM50 80h10v5H50z" fill="currentColor" />
+</svg>
