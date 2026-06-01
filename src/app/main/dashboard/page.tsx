@@ -229,7 +229,7 @@ export default function DashboardPage() {
             Welcome back! Here&apos;s what&apos;s happening with your store today.
           </p>
         </div>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
@@ -247,7 +247,7 @@ export default function DashboardPage() {
           >
             Download Report
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Stats Grid */}
