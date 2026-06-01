@@ -1,32 +1,24 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Patsy Coffee Shop",
-  description: "Coffee shop management portal",
+  title: "Patsy's Coffee - Management Portal",
+  description: "Complete management system for Patsy's Coffee Shop",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <head>
+        <link rel="preload" href="/fonts/AsapCondensed-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/AsapCondensed-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
