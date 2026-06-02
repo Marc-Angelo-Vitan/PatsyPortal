@@ -1,50 +1,50 @@
 {
     "workbench.colorCustomizations": {
-        "editor.background": "#0F3A31",
+        "editor.background": "#102821",
         "editor.foreground": "#F4F3E1",
-        "activityBar.background": "#0C3028",
+        "activityBar.background": "#0B1F1A",
         "activityBar.foreground": "#F8D576",
-        "sideBar.background": "#123F35",
+        "sideBar.background": "#142F28",
         "sideBar.foreground": "#F4F3E1",
-        "titleBar.activeBackground": "#123F35",
+        "titleBar.activeBackground": "#142F28",
         "titleBar.activeForeground": "#F8D576",
-        "statusBar.background": "#0C3028",
+        "statusBar.background": "#0B1F1A",
         "statusBar.foreground": "#F4F3E1",
-        "tab.activeBackground": "#18493E",
+        "tab.activeBackground": "#1C3C33",
         "tab.activeForeground": "#F8D576",
-        "tab.inactiveBackground": "#123F35",
+        "tab.inactiveBackground": "#142F28",
         "tab.inactiveForeground": "#7B7C80",
         "editorCursor.foreground": "#F8D576",
         "editor.selectionBackground": "#2ECC7140",
         "editor.inactiveSelectionBackground": "#2ECC7120",
-        "editor.lineHighlightBackground": "#18493E",
+        "editor.lineHighlightBackground": "#1C3C33",
         "editorLineNumber.foreground": "#616267",
         "editorLineNumber.activeForeground": "#F8D576",
         "editorIndentGuide.background": "#61626740",
         "editorIndentGuide.activeBackground": "#F8D57680",
         "editorBracketHighlight.foreground1": "#F8D576",
         "editorBracketHighlight.foreground2": "#2ECC71",
-        "editorBracketHighlight.foreground3": "#3498DB",
+        "editorBracketHighlight.foreground3": "#4A90E2",
         "editorBracketMatch.border": "#F8D576",
-        "input.background": "#18493E",
+        "input.background": "#1C3C33",
         "input.foreground": "#F4F3E1",
-        "input.border": "#616267",
-        "dropdown.background": "#18493E",
+        "input.border": "#2ECC71",
+        "dropdown.background": "#1C3C33",
         "dropdown.foreground": "#F4F3E1",
         "button.background": "#F8D576",
-        "button.foreground": "#0F3A31",
+        "button.foreground": "#102821",
         "button.hoverBackground": "#F0C85F",
-        "panel.background": "#0F3A31",
-        "panel.border": "#18493E",
-        "terminal.background": "#0F3A31",
+        "panel.background": "#102821",
+        "panel.border": "#1C3C33",
+        "terminal.background": "#102821",
         "terminal.foreground": "#F4F3E1",
-        "terminal.ansiBlack": "#0F3A31",
+        "terminal.ansiBlack": "#102821",
         "terminal.ansiRed": "#E74C3C",
         "terminal.ansiGreen": "#2ECC71",
         "terminal.ansiYellow": "#F8D576",
-        "terminal.ansiBlue": "#3498DB",
-        "terminal.ansiMagenta": "#F8D576",
-        "terminal.ansiCyan": "#3498DB",
+        "terminal.ansiBlue": "#4A90E2",
+        "terminal.ansiMagenta": "#B084F5",
+        "terminal.ansiCyan": "#56CCF2",
         "terminal.ansiWhite": "#F4F3E1"
     },
     "editor.tokenColorCustomizations": {
@@ -74,7 +74,7 @@
                     "string"
                 ],
                 "settings": {
-                    "foreground": "#F4F3E1"
+                    "foreground": "#A8E6CF"
                 }
             },
             {
@@ -91,7 +91,7 @@
                     "comment"
                 ],
                 "settings": {
-                    "foreground": "#616267",
+                    "foreground": "#7B7C80",
                     "fontStyle": "italic"
                 }
             },
@@ -102,14 +102,15 @@
                     "parameter"
                 ],
                 "settings": {
-                    "foreground": "#3498DB"
+                    "foreground": "#56CCF2"
                 }
             },
             {
                 "scope": [
                     "entity.name.type",
                     "support.class",
-                    "entity.name.class"
+                    "entity.name.class",
+                    "entity.name.tag"
                 ],
                 "settings": {
                     "foreground": "#F8D576"
