@@ -1,4 +1,6 @@
 {
+    "snyk.advanced.autoSelectOrganization": true,
+    "snyk.advanced.organization": "56cf0cb4-5432-413c-b7bd-170634b974ae",
     "workbench.colorCustomizations": {
         "editor.background": "#0F3A31",
         "editor.foreground": "#F4F3E1",
