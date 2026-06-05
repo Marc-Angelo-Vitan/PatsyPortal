@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Colors } from '../../../styles/colors';
+import { register } from '../../../services/auth/auth.api';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -14,8 +15,8 @@ export default function RegisterPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    shopName: '', // Added shop name field
-    role: 'manager', // Default role
+    shopName: '',
+    shopAddress: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -33,51 +34,53 @@ export default function RegisterPage() {
       setError('Please fill in all fields');
       return false;
     }
-    
+
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters');
       return false;
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return false;
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address');
       return false;
     }
-    
+
     return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (isLoading) return;
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
     setError('');
-    
+
     // Simulate API call - Replace with your actual registration API
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       // Demo registration - check if email already exists
       if (formData.email === 'admin@patsycoffee.com') {
         setError('This email is already registered. Please use a different email.');
       } else {
-        console.log('Registration successful!', { 
+        const response = await register({
           name: formData.name,
           email: formData.email,
+          password: formData.password,
           shopName: formData.shopName,
-          role: formData.role
+          shopAddress: formData.shopAddress,
         });
-        router.push('/auth/login?registered=true');
+        console.log('API Response: ', response);
+        // router.push('/auth/login?registered=true');
       }
     } catch (error) {
       setError('An error occurred. Please try again later.');
@@ -90,27 +93,27 @@ export default function RegisterPage() {
     <div className="min-h-screen flex relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-500 via-gray-800 to-gray-900" />
-      
+
       {/* Pattern Overlay for Texture */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `radial-gradient(circle at 25% 50%, white 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
         }}
       />
-      
+
       {/* Content Container */}
       <div className="relative z-10 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-          
+
           {/* Left Side - Branding Section */}
           <div className="flex-1 text-center lg:text-left">
             <div className="mb-6 flex justify-center lg:justify-start">
-              <Image 
-                src="/images/patsy-icon.png" 
-                alt="Patsy's Coffee" 
-                width={80} 
+              <Image
+                src="/images/patsy-icon.png"
+                alt="Patsy's Coffee"
+                width={80}
                 height={80}
                 className="rounded-full shadow-lg"
               />
@@ -126,7 +129,7 @@ export default function RegisterPage() {
               <div className="w-6 h-1 rounded-full bg-white/50" />
               <div className="w-6 h-1 rounded-full bg-white/50" />
             </div>
-            
+
             {/* Benefits List */}
             <div className="hidden lg:block bg-black/20 backdrop-blur-sm rounded-xl p-6">
               <div className="grid grid-cols-2 gap-3 text-sm">
@@ -159,10 +162,10 @@ export default function RegisterPage() {
               <div className="p-6 sm:p-8 md:p-10">
                 {/* Mobile Logo */}
                 <div className="lg:hidden flex justify-center mb-6">
-                  <Image 
-                    src="/images/patsy-icon.png" 
-                    alt="Patsy's Coffee" 
-                    width={60} 
+                  <Image
+                    src="/images/patsy-icon.png"
+                    alt="Patsy's Coffee"
+                    width={60}
                     height={60}
                     className="rounded-full shadow-md"
                   />
@@ -191,27 +194,6 @@ export default function RegisterPage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Shop/Branch Name
-                    </label>
-                    <input
-                      type="text"
-                      name="shopName"
-                      value={formData.shopName}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
-                      style={{ 
-                        borderColor: error ? Colors.error : '#d1d5db',
-                      }}
-                      onFocus={(e) => e.target.style.borderColor = Colors.primary}
-                      onBlur={(e) => e.target.style.borderColor = error ? Colors.error : '#d1d5db'}
-                      placeholder="e.g., Patsy's Coffee - Downtown"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name
                     </label>
                     <input
@@ -221,7 +203,7 @@ export default function RegisterPage() {
                       onChange={handleChange}
                       disabled={isLoading}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
-                      style={{ 
+                      style={{
                         borderColor: error ? Colors.error : '#d1d5db',
                       }}
                       onFocus={(e) => e.target.style.borderColor = Colors.primary}
@@ -242,7 +224,7 @@ export default function RegisterPage() {
                       onChange={handleChange}
                       disabled={isLoading}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
-                      style={{ 
+                      style={{
                         borderColor: error ? Colors.error : '#d1d5db',
                       }}
                       onFocus={(e) => e.target.style.borderColor = Colors.primary}
@@ -252,23 +234,6 @@ export default function RegisterPage() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Role
-                    </label>
-                    <select
-                      name="role"
-                      value={formData.role}
-                      onChange={handleChange}
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed bg-white"
-                      style={{ borderColor: '#d1d5db' }}
-                    >
-                      <option value="owner">Store Owner</option>
-                      <option value="manager">Store Manager</option>
-                      <option value="supervisor">Supervisor</option>
-                    </select>
-                  </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -345,6 +310,49 @@ export default function RegisterPage() {
                     </div>
                   </div>
 
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Shop/Branch Name
+                    </label>
+                    <input
+                      type="text"
+                      name="shopName"
+                      value={formData.shopName}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      style={{
+                        borderColor: error ? Colors.error : '#d1d5db',
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = Colors.primary}
+                      onBlur={(e) => e.target.style.borderColor = error ? Colors.error : '#d1d5db'}
+                      placeholder="e.g., Patsy's Coffee - Downtown"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Shop/Branch Address
+                    </label>
+                    <input
+                      type="text"
+                      name="shopAddress"
+                      value={formData.shopAddress}
+                      onChange={handleChange}
+                      disabled={isLoading}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      style={{
+                        borderColor: error ? Colors.error : '#d1d5db',
+                      }}
+                      onFocus={(e) => e.target.style.borderColor = Colors.primary}
+                      onBlur={(e) => e.target.style.borderColor = error ? Colors.error : '#d1d5db'}
+                      placeholder="e.g., 123 Main St, Pandi, Bulacan"
+                      required
+                    />
+                  </div>
+
+
                   <button
                     type="submit"
                     disabled={isLoading}
@@ -377,8 +385,8 @@ export default function RegisterPage() {
 
                 {/* Login Link */}
                 <div className="text-center">
-                  <Link 
-                    href="/auth/login" 
+                  <Link
+                    href="/auth/login"
                     className="font-semibold hover:underline inline-flex items-center gap-2"
                     style={{ color: Colors.primary }}
                   >
